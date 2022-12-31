@@ -3,7 +3,9 @@ import React, { useState, useEffect } from 'react';
 function GetUsers() {
 
     const usersFetch = () => {
-        alert('usersFetch work!')
+        fetch('http://localhost:5000/getusers')
+            .then(res => res.json())
+            .then(res => console.log(res))
     }
 
     return (

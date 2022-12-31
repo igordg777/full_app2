@@ -2,9 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 function SaveUser() {
 
-    const onFinish = (values) => {
+    const onFinish = async (values) => {
         console.log('Success:', values);
+        const createUsersRequest = await fetch('http://localhost:5000/saveusers',
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                method: "POST",
+                body: JSON.stringify(values)
+            })
+
+        const createUsersRespons = await createUsersRequest.json();
+        console.log(createUsersRespons);
     };
+
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
